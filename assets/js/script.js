@@ -42,9 +42,8 @@ searchBtn.addEventListener("click", () => {
   }
   //----- city variable for fetch url -----
   var city = cityArr.join(" ");
-
-  var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIKey;
-    //console.log(queryURL);
+  var queryURL =`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
+    //console.log("url1 " + queryURL);
 
   function searchCity() {
     fetch(queryURL)
@@ -84,18 +83,14 @@ searchBtn.addEventListener("click", () => {
   getCityGeo(city, APIKey); // to get the city's geo latitudes & longitudes
   // --------⬇to be completed⬇------------
   saveRecentSearch(city); // to save the recent search to local storage & display under the search box
-  // saved search可以被点击
-  // 点击后，之前的current weather & 5-day forecast会被清除，然后重新显示新的current weather & 5-day forecast
-  // if user input is empty or invalid, display error message, and display the last search result
+  // ❕待完成❕saved search可以被点击 
+  // ❕待完成❕点击后，之前的current weather & 5-day forecast会被清除，然后重新显示新的current weather & 5-day forecast
+  // ❕待完成❕if user input is empty or invalid, display error message, and display the last search result
 
   //----- get the city's geo latitudes & longitudes -----
   function getCityGeo(city, APIKey) {
-    var cityGeoCodeURL =
-      "http://api.openweathermap.org/geo/1.0/direct?q=" +
-      city +
-      "&limit=1&appid=" +
-      APIKey;
-     //console.log(cityGeoCodeURL);
+    var cityGeoCodeURL = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${APIKey}`;
+     //console.log("url2 " + cityGeoCodeURL);
     fetch(cityGeoCodeURL)
       .then(function (response) {
         //console.log(response);
@@ -113,8 +108,8 @@ searchBtn.addEventListener("click", () => {
 
   // -------- pass lat&lon into getCityGeo function --------
   function displayFiveDayForecast(lat, lon) {
-    var fiveDayForecastURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=" + APIKey;
-    //console.log("URL3: "+fiveDayForecastURL);
+    var fiveDayForecastURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${APIKey}`;
+    // console.log("URL3: "+fiveDayForecastURL);
     fetch(fiveDayForecastURL) 
       .then(function (response) {
         return response.json();
@@ -145,11 +140,10 @@ searchBtn.addEventListener("click", () => {
   }
 
 // ----- save searched cities & display under the search box -----
-  function saveRecentSearch(city) { // tried pass in parameter "city" but not working
+  function saveRecentSearch(city) { 
     cityArrList.push(city);//Add the new city to the array
       //Remove the oldest city if reaching the limit(No more than 8)
       cityArrList.slice(-8);
-      //Display all cities
 
       for (var i = 0; i < 8; i++) {
         var buttonEl = document.createElement("button");
@@ -158,9 +152,10 @@ searchBtn.addEventListener("click", () => {
         // buttonEl.setAttribute("data-cities",""); 
         var recentSearch = document.querySelector("#recent-search");
         recentSearch.appendChild(buttonEl);
+        localStorage.setItem("cities", cityArrList);
       }
 
-    //   for (cityName of cityArrList) { // for of/in is for object
+    //   for (cityName of cityArrList) { // for of/in is for object only
     //     var buttonEl = document.createElement("button");
     //     buttonEl.textContent = cityName;
     //     buttonEl.setAttribute("class", "searched-city-btn btn btn-secondary px-5 my-1");
@@ -172,23 +167,7 @@ searchBtn.addEventListener("click", () => {
       //Make the buttons clickable
 
       //Save the new array back to localstorage.
-      localStorage.setItem("cities", cityArrList);
-
-    // get recent search from local storage
-    // if there is no recent search, create an empty array
-    // push the new search into the array
-      // -------- ❌ not working ❌--------
-    //  var recentSearchArr = JSON.parse(localStorage.getItem("cities")) || [];
-    //  // save up to 8 recent searches to local storage
-    //  recentSearchArr = recentSearchArr.slice(0, 8);
-    //  console.log(recentSearchArr).length;
-    // // recentSearchArr 好像和 recentSearch 没关系
-    // // 但是我不知道怎么把 recentSearchArr 里的内容显示在页面上
-
-    // for (var i = 0; i < recentSearchArr.length; i++) {
-    //    recentSearchArr.push(city);
-    //    return recentSearchArr;
-    // }
+      
 
     // ❓if user input is empty or INVALID, display error message, and display the last search result❓
     if (city === "") {
