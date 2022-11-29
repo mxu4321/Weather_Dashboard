@@ -1,0 +1,113 @@
+/* google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Secular+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+:root {
+  --ice: #c1e9fc;
+  --lavender: #c0bbde;
+  --light-blue: #6acde5;
+  --dark-blue: #2a348e;
+  --light-purple: #9990ba;
+  --rose: #c679b4;
+  --medium-purple: #7d4497;
+  --dark-purple: #401e5b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: url(https://images.unsplash.com/photo-1496450681664-3df85efbd29f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2970&q=80);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  color: var(--dark-blue);
+}
+
+/* ----- header & button ----- */
+header,
+.forecast-header {
+  font-family: "Secular One", sans-serif;
+  line-height: 200%;
+}
+
+header,
+#search-button,
+.forecast-header {
+  background-image: linear-gradient(
+    90deg,
+    var(--dark-purple),
+    var(--medium-purple),
+    var(--dark-blue)
+  );
+  text-shadow: 3px 3px 10px var(--light-purple), -2px 1px 10px var(--lavender);
+}
+
+main {
+  font-family: "Poppins", sans-serif;
+}
+
+/* ------ left side: search history ----- */
+.serach-history {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+/* ----- right side: current weather display ----- */
+#current-weather {
+  line-height: 200%;
+}
+
+.date-time {
+  display: flex;
+  justify-content: space-between;
+}
+
+#current-weather-icon,
+#forecast-weather-icon {
+  width: 100px;
+  height: 100px;
+  margin: -20px;
+}
+
+.weather-conditions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ----- right side: 5 day forecast ----- */
+
+.forecast-five-day {
+  list-style: none;
+  text-align: center;
+  display: inline-block;
+  justify-content: space-around;
+  padding: 1%;
+  margin: 1%;
+  background: var(--dark-purple);
+  background: linear-gradient(
+    to right,
+    var(--lavender),
+    var(--ice),
+    var(--light-purple)
+  );
+  border-radius: 10px;
+}
+
+.forecast-five-day {
+  box-shadow: 
+    rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, 
+    rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.forecast-five-day li {
+  position: relative;
+  vertical-align: top;
+}
