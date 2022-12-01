@@ -51,10 +51,12 @@ main {
 }
 
 /* ------ left side: search history ----- */
-.serach-history {
+.serach-history .searched-city-btn {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  width: 100%;
+  align-items: center;
 }
 
 /* ----- right side: current weather display ----- */
