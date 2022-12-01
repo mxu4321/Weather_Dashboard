@@ -5,10 +5,8 @@
 :root {
   --ice: #c1e9fc;
   --lavender: #c0bbde;
-  --light-blue: #6acde5;
   --dark-blue: #2a348e;
   --light-purple: #9990ba;
-  --rose: #c679b4;
   --medium-purple: #7d4497;
   --dark-purple: #401e5b;
 }
@@ -57,6 +55,12 @@ main {
   justify-content: space-evenly;
   width: 100%;
   align-items: center;
+}
+
+.searched-city-btn:hover {
+  background-color: var(--medium-purple);
+  -webkit-animation: ani 0.7s steps(29) forwards;
+  animation: ani 0.7s steps(29) forwards;
 }
 
 /* ----- right side: current weather display ----- */
